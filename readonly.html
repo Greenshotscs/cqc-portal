@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenshoot Care Services — CQC Evidence</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f4f7f5;color:#1c2b22;font-size:14px;line-height:1.6}
+.header{background:#1a3a2a;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.2)}
+.brand{display:flex;align-items:center;gap:12px}
+.leaf{width:36px;height:36px;background:linear-gradient(135deg,#2d6a4f,#52b788);border-radius:50% 50% 50% 10%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem}
+.brand-name{color:#fff;font-family:'DM Serif Display',serif;font-size:1.05rem}
+.brand-sub{display:block;color:#95d5b2;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:1rem}
+.cqc-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.3rem .9rem;border-radius:20px;font-size:.72rem;font-weight:600}
+.readonly-banner{background:#1d4ed8;color:#fff;padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.8rem}
+.readonly-banner strong{font-size:.85rem}
+.print-btn{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);padding:.3rem .9rem;border-radius:6px;font-size:.75rem;font-weight:600;cursor:pointer;font-family:inherit}
+.print-btn:hover{background:rgba(255,255,255,.3)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.page-title{font-family:'DM Serif Display',serif;font-size:2rem;color:#1a3a2a;margin-bottom:.3rem}
+.page-sub{color:#7a9b84;font-size:.85rem;margin-bottom:1.5rem}
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid #d0e8d8;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:.55rem 1.2rem;font-size:.83rem;font-weight:600;color:#7a9b84;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
+.tab.active{color:#2d6a4f;border-bottom-color:#52b788}
+.tab:hover{color:#2d6a4f}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+/* CARDS */
+.card{background:#fff;border-radius:12px;padding:1.4rem;box-shadow:0 2px 12px rgba(26,58,42,.08);border:1px solid #d0e8d8;margin-bottom:1rem}
+.card-title{font-weight:700;font-size:.95rem;color:#1a3a2a;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.sc{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 2px 12px rgba(26,58,42,.08);border:1px solid #d0e8d8;border-top:3px solid #52b788;text-align:center}
+.sn{font-family:'DM Serif Display',serif;font-size:2rem;color:#1a3a2a;line-height:1}
+.sl{font-size:.75rem;color:#7a9b84;margin-top:.2rem}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.dc{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 2px 12px rgba(26,58,42,.08);border:1px solid #d0e8d8}
+/* TABLE */
+.tw{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(26,58,42,.08);border:1px solid #d0e8d8;overflow:hidden;margin-bottom:1rem}
+.ttb{padding:.8rem 1.1rem;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid #d0e8d8;flex-wrap:wrap}
+.sb{flex:1;min-width:150px;padding:.45rem .8rem;border:1.5px solid #d0e8d8;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none;background:#faf9f6}
+.sb:focus{border-color:#52b788;background:#fff}
+.fs{padding:.45rem .7rem;border:1.5px solid #d0e8d8;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none;background:#faf9f6;cursor:pointer}
+table{width:100%;border-collapse:collapse}
+th{background:#d8f3dc;color:#1a3a2a;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.65rem .9rem;text-align:left;white-space:nowrap}
+td{padding:.75rem .9rem;border-bottom:1px solid #d0e8d8;font-size:.8rem;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8fdf9}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:700;white-space:nowrap}
+.b-good{background:#dcfce7;color:#166534}
+.b-pend{background:#fef3c7;color:#92400e}
+.b-need{background:#fee2e2;color:#991b1b}
+.b-over{background:#fee2e2;color:#991b1b}
+.b-ok{background:#dcfce7;color:#166534}
+.b-due{background:#fef3c7;color:#92400e}
+/* PBAR */
+.pbar-wrap{background:#e5e7eb;border-radius:20px;height:7px;overflow:hidden;margin-top:4px}
+.pbar{height:100%;border-radius:20px;transition:width .5s}
+/* ALERT */
+.alert{padding:.8rem 1.1rem;border-radius:8px;margin-bottom:1rem;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem}
+.alert-green{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.alert-amber{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.alert-red{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.alert-blue{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+/* LOADING */
+#loadingScreen{position:fixed;inset:0;background:#1a3a2a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+#loadingScreen.hidden{opacity:0;pointer-events:none}
+.spinner{width:48px;height:48px;border:4px solid rgba(255,255,255,.2);border-top-color:#52b788;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:1.2rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* PRINT */
+@media print{
+  .header{position:relative}
+  .readonly-banner{display:none}
+  .tabs{display:none}
+  .tab-pane{display:block!important}
+  .print-btn{display:none}
+  .ttb{display:none}
+  .no-print{display:none}
+}
+@media(max-width:768px){.container{padding:1rem}}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loadingScreen">
+  <div class="leaf" style="width:60px;height:60px;font-size:1.8rem;margin-bottom:1rem">&#127807;</div>
+  <div style="color:#fff;font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:.5rem">Greenshoot Care Services</div>
+  <div class="spinner"></div>
+  <div style="color:#95d5b2;font-size:.82rem">Loading evidence records...</div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="brand">
+    <div class="leaf">&#127807;</div>
+    <div>
+      <span class="brand-name">Greenshoot Care Services</span>
+      <small class="brand-sub">CQC Evidence — Read Only</small>
+    </div>
+  </div>
+  <div class="header-right">
+    <a href="https://www.cqc.org.uk/location/1-2030965383" target="_blank" class="cqc-badge">&#128279; CQC Profile</a>
+    <div class="cqc-badge">Location ID: 1-2030965383</div>
+  </div>
+</header>
+
+<!-- READ ONLY BANNER -->
+<div class="readonly-banner">
+  <div>
+    <strong>&#128269; CQC Read-Only Evidence View</strong> &mdash;
+    This page provides transparent, open access to all CQC evidence records maintained by Greenshoot Care Services.
+    No login required. All records are live and reflect current compliance status.
+  </div>
+  <button class="print-btn" onclick="window.print()">&#128438; Print / Save PDF</button>
+</div>
+
+<div class="container">
+  <div class="page-title">CQC Evidence &amp; Compliance</div>
+  <div class="page-sub" id="lastUpdated">Greenshoot Care Services Ltd &mdash; The Raylor Centre, James Street, York, YO10 3DW &mdash; 01904 848700</div>
+
+  <!-- OVERALL RATING -->
+  <div id="overallRatingDiv" class="card" style="margin-bottom:1.5rem"></div>
+
+  <!-- STATS -->
+  <div class="sg" id="statsGrid"></div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" data-tab="overview">&#128202; Overview</div>
+    <div class="tab" data-tab="evidence">&#128194; Evidence Log</div>
+    <div class="tab" data-tab="statements">&#9989; Quality Statements</div>
+    <div class="tab" data-tab="feedback">&#128172; Feedback</div>
+    <div class="tab" data-tab="incidents">&#9888;&#65039; Incidents</div>
+    <div class="tab" data-tab="training">&#127891; Training</div>
+    <div class="tab" data-tab="reports">&#128203; Reports</div>
+  </div>
+
+  <!-- OVERVIEW TAB -->
+  <div id="tab-overview" class="tab-pane active">
+    <div style="font-family:'DM Serif Display',serif;color:#1a3a2a;font-size:1.1rem;margin-bottom:.8rem">Five Key Questions — Evidence Coverage</div>
+    <div class="dg" id="domainsGrid"></div>
+    <div class="card">
+      <div class="card-title">&#128197; Evidence Review Status</div>
+      <div id="reviewStatusDiv"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">&#128202; Evidence by CQC Category</div>
+      <div id="catBreakdownDiv"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">&#128279; Connected Systems</div>
+      <div style="font-size:.8rem;color:#7a9b84;margin-bottom:.8rem">Greenshoot Care Services uses the following systems to manage care records. Click to access each system directly.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem">
+        <a href="https://www.logmycare.co.uk/" target="_blank" style="display:flex;align-items:center;gap:.7rem;padding:.9rem;background:#f0fdf4;border:1px solid #86efac;border-radius:9px;text-decoration:none;color:#1a3a2a;transition:all .2s">
+          <div style="width:36px;height:36px;background:#16a34a;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0">&#128100;</div>
+          <div><div style="font-weight:700;font-size:.85rem">LogMyCare</div><div style="font-size:.72rem;color:#7a9b84">Care Plans &amp; Risk Assessments</div></div>
+          <span style="margin-left:auto;color:#16a34a;font-weight:700">&#8599;</span>
+        </a>
+        <a href="https://app.qcs.co.uk/account/login" target="_blank" style="display:flex;align-items:center;gap:.7rem;padding:.9rem;background:#eff6ff;border:1px solid #93c5fd;border-radius:9px;text-decoration:none;color:#1a3a2a;transition:all .2s">
+          <div style="width:36px;height:36px;background:#2563eb;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0">&#128196;</div>
+          <div><div style="font-weight:700;font-size:.85rem">QCS</div><div style="font-size:.72rem;color:#7a9b84">Policies &amp; Procedures</div></div>
+          <span style="margin-left:auto;color:#2563eb;font-weight:700">&#8599;</span>
+        </a>
+        <a href="https://greenshoot.flosolutions.co.uk/login.php" target="_blank" style="display:flex;align-items:center;gap:.7rem;padding:.9rem;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:9px;text-decoration:none;color:#1a3a2a;transition:all .2s">
+          <div style="width:36px;height:36px;background:#7c3aed;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0">&#128101;</div>
+          <div><div style="font-weight:700;font-size:.85rem">Flo System</div><div style="font-size:.72rem;color:#7a9b84">Staff Records &amp; Training</div></div>
+          <span style="margin-left:auto;color:#7c3aed;font-weight:700">&#8599;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVIDENCE TAB -->
+  <div id="tab-evidence" class="tab-pane">
+    <div class="tw">
+      <div class="ttb">
+        <input class="sb" id="evSearch" placeholder="Search evidence...">
+        <select class="fs" id="evFilterDom">
+          <option value="">All Domains</option>
+          <option>Safe</option><option>Effective</option><option>Caring</option><option>Responsive</option><option>Well-led</option>
+        </select>
+        <select class="fs" id="evFilterCat">
+          <option value="">All Categories</option>
+          <option>People's Experience</option>
+          <option>Feedback from Staff and Leaders</option>
+          <option>Feedback from Partners</option>
+          <option>Processes</option>
+          <option>Observations</option>
+          <option>Outcomes</option>
+        </select>
+        <select class="fs" id="evFilterStat">
+          <option value="">All Status</option>
+          <option>Approved</option><option>Pending Review</option>
+        </select>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr>
+            <th>Evidence Title</th><th>Domain</th><th>CQC Category</th>
+            <th>Quality Statement</th><th>Type</th><th>Submitted By</th>
+            <th>Position</th><th>Status</th><th>Review Due</th><th>Date</th>
+          </tr></thead>
+          <tbody id="evTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUALITY STATEMENTS TAB -->
+  <div id="tab-statements" class="tab-pane">
+    <div id="statementsDiv"></div>
+  </div>
+
+  <!-- FEEDBACK TAB -->
+  <div id="tab-feedback" class="tab-pane">
+    <div class="alert alert-blue">&#128172; This register records all feedback received from service users, families, staff and professional partners in line with Regulation 16.</div>
+    <div id="feedbackDiv"></div>
+  </div>
+
+  <!-- INCIDENTS TAB -->
+  <div id="tab-incidents" class="tab-pane">
+    <div class="alert alert-blue">&#9888;&#65039; All incidents, near misses and concerns are recorded here with immediate actions taken and learning outcomes in line with Regulations 12 and 17.</div>
+    <div id="incidentsDiv"></div>
+  </div>
+
+  <!-- TRAINING TAB -->
+  <div id="tab-training" class="tab-pane">
+    <div class="alert alert-blue">&#127891; Mandatory training compliance for all staff. Records are maintained in the Flo workforce management system and summarised here.</div>
+    <div id="trainingDiv"></div>
+  </div>
+
+  <!-- REPORTS TAB -->
+  <div id="tab-reports" class="tab-pane">
+    <div id="reportsDiv"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="background:#1a3a2a;color:#95d5b2;padding:1.2rem 2rem;margin-top:2rem;font-size:.75rem">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.6rem">
+    <div>&#127807; Greenshoot Care Services Ltd &mdash; CQC Registered &mdash; Rating: Good &mdash; Location ID: 1-2030965383</div>
+    <div>The Raylor Centre, James Street, York, YO10 3DW &mdash; 01904 848700 &mdash; info@greenshootscs.com</div>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1);padding-top:.6rem">
+    <a href="https://www.logmycare.co.uk/" target="_blank" style="color:#95d5b2;text-decoration:none">LogMyCare &#8599;</a>
+    <a href="https://app.qcs.co.uk/account/login" target="_blank" style="color:#95d5b2;text-decoration:none">QCS &#8599;</a>
+    <a href="https://greenshoot.flosolutions.co.uk/login.php" target="_blank" style="color:#95d5b2;text-decoration:none">Flo System &#8599;</a>
+    <a href="https://www.cqc.org.uk/location/1-2030965383" target="_blank" style="color:#95d5b2;text-decoration:none">CQC Profile &#8599;</a>
+    <a href="https://greenshootscs.com" target="_blank" style="color:#95d5b2;text-decoration:none">greenshootscs.com &#8599;</a>
+  </div>
+</div>
+
+<script>
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxydVtEQCzYqmculGC4gvEfVQBiTQ7b_aYNGdAh1EgtT152PBxrsfwHiuIGF4hYR8BH/exec';
+var TODAY = new Date().toISOString().split('T')[0];
+
+var DOMAINS = {
+  'Safe':{color:'#2d6a4f',bg:'#d8f3dc',icon:'&#128737;',statements:['Learning culture - We have a proactive and positive culture of safety based on openness and honesty','Safe systems, pathways and transitions - We work with people and our partners to establish and maintain safe systems of care','Safeguarding - We work with people to understand what being safe means to them and protect them from avoidable harm','Involving people to manage risks - We work with people to understand and manage risks and empower them to keep themselves safe','Safe environments - We detect and control risks in the care environment and maintain premises and equipment','Safe and effective staffing - We make sure there are enough qualified, skilled and experienced staff who receive effective support','Infection prevention and control - We assess and manage the risk of infection and are clean and hygienic','Medicines optimisation - We make sure medicines and treatments are safe and meet peoples needs, capacities and preferences']},
+  'Effective':{color:'#3a7bc8',bg:'#dbeafe',icon:'&#128200;',statements:['Assessing needs - We maximise the effectiveness of peoples care by assessing and reviewing their health, care and wellbeing needs','Delivering evidence-based care - We plan and deliver peoples care and treatment with them, including what is important to them','How staff and teams work together - We work effectively across teams and services to support people','Supporting people to live healthier lives - We support people to manage their health and wellbeing to maximise independence','Monitoring and improving outcomes - We routinely monitor peoples care and treatment to continuously improve it','Consent to care and treatment - We tell people about their rights around consent and respect these when delivering care']},
+  'Caring':{color:'#c2475a',bg:'#fce4e8',icon:'&#128156;',statements:['Kindness, compassion and dignity - We always treat people with kindness, empathy and compassion and respect their privacy and dignity','Treating people as individuals - We treat people as individuals and make sure care meets their needs and preferences','Independence, choice and control - We support people to have choice and control and to make decisions about their care','Responding to peoples immediate needs - We respond quickly and effectively to peoples immediate needs as they arise','Workforce wellbeing and enablement - We care about and promote the wellbeing of our staff and ensure their views are heard']},
+  'Responsive':{color:'#9b5de5',bg:'#ede9fe',icon:'&#9889;',statements:['Person-centred care - We make sure people are at the centre of their care and treatment choices and we decide together','Care provision, integration and continuity - We understand the diverse health and care needs of people and our local communities','Timely access to the right care - We listen to and understand peoples needs and act on them in a way that respects their choices','Listening to and involving people - We make it easy for people to share feedback and raise complaints about their care','Equity in access - We treat everyone as an individual and seek to remove barriers that limit access to our services','Equity in experiences and outcomes - We actively seek out and listen to information about people who may experience inequality','Planning for the future - We support people to plan for important life changes with enough time to make informed decisions']},
+  'Well-led':{color:'#f77f00',bg:'#fef3c7',icon:'&#11088;',statements:['Shared direction and culture - We have a clear vision and credible strategy to deliver high quality sustainable care','Capable, compassionate and inclusive leaders - Our leaders have the skills, knowledge and credibility to lead effectively','Freedom to speak up - We foster a positive listening culture where people feel they can speak up and be heard','Workforce equality, diversity and inclusion - We value diversity in our workforce and work towards an inclusive culture','Governance, management and sustainability - We have clear responsibilities, roles, systems of accountability and good governance','Partnerships and communities - We understand our impact on the wider community and work with partners on our shared vision','Learning, improvement and innovation - We focus on the future by understanding our strategic risks and opportunities','Environmental sustainability - We minimise the impact of our activities on the environment']}
+};
+
+var evidence = [];
+var feedback = [];
+var incidents = [];
+var training = [];
+
+// ============================================================
+// LOAD FROM SHEETS
+// ============================================================
+function loadData(){
+  fetch(SHEET_URL)
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(Array.isArray(data)&&data.length>0){
+        evidence=data.map(function(r){
+          return {
+            id:r.ID||r.id, title:r.Title||r.title||'',
+            desc:r.Description||r.description||'',
+            domain:r.Domain||r.domain||'',
+            statement:r.Statement||r.statement||'',
+            type:r.Type||r.type||'',
+            category:r.Category||r.category||'',
+            priority:r.Priority||r.priority||'Medium',
+            status:r.Status||r.status||'Pending Review',
+            date:r.Date||r.date||'',
+            reviewDate:r.ReviewDate||r.reviewDate||'',
+            submittedBy:r.SubmittedBy||r.submittedBy||'',
+            position:r.Position||r.position||''
+          };
+        });
+      }
+      hideLoading();
+      renderAll();
+    })
+    .catch(function(){
+      hideLoading();
+      renderAll();
+    });
+}
+
+function hideLoading(){
+  var ls = document.getElementById('loadingScreen');
+  ls.classList.add('hidden');
+  setTimeout(function(){ls.style.display='none';},500);
+  document.getElementById('lastUpdated').textContent =
+    'Greenshoot Care Services Ltd \u2014 The Raylor Centre, James Street, York, YO10 3DW \u2014 Last updated: '+fmtDate(TODAY);
+}
+
+// ============================================================
+// CQC RATING
+// ============================================================
+function cqcRating(pct){
+  if(pct>=76) return {label:'Outstanding',icon:'&#11088; ',bg:'#fefce8',col:'#713f12',bdr:'#fde047'};
+  if(pct>=51) return {label:'Good',icon:'&#9989; ',bg:'#dcfce7',col:'#166534',bdr:'#86efac'};
+  if(pct>=26) return {label:'Requires Improvement',icon:'&#9888;&#65039; ',bg:'#fff7ed',col:'#9a3412',bdr:'#fdba74'};
+  return {label:'Inadequate',icon:'&#10060; ',bg:'#fee2e2',col:'#991b1b',bdr:'#fca5a5'};
+}
+function domainPct(name){
+  var d=DOMAINS[name];
+  var covered=d.statements.filter(function(s){return evidence.find(function(e){return e.domain===name&&e.statement===s&&e.status==='Approved';});}).length;
+  return Math.round(covered/d.statements.length*100);
+}
+function overallRating(){
+  var ratings=Object.keys(DOMAINS).map(function(n){return cqcRating(domainPct(n)).label;});
+  var out=ratings.filter(function(r){return r==='Outstanding';}).length;
+  var good=ratings.filter(function(r){return r==='Good';}).length;
+  var ri=ratings.filter(function(r){return r==='Requires Improvement';}).length;
+  var inad=ratings.filter(function(r){return r==='Inadequate';}).length;
+  if(inad>=2) return cqcRating(10);
+  if(ri>=2) return cqcRating(35);
+  if(out>=2&&(out+good)===5) return cqcRating(90);
+  return cqcRating(60);
+}
+function rBadge(r){
+  return '<span style="display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;background:'+r.bg+';color:'+r.col+';border:1px solid '+r.bdr+'">'+r.icon+r.label+'</span>';
+}
+function pBar(pct,color){
+  return '<div class="pbar-wrap"><div class="pbar" style="width:'+pct+'%;background:'+color+'"></div></div>';
+}
+function reviewStatus(d){
+  if(!d) return {label:'No date set',cls:'b-pend'};
+  var diff=Math.round((new Date(d)-new Date(TODAY))/(1000*60*60*24));
+  if(diff<0) return {label:'Overdue '+Math.abs(diff)+'d',cls:'b-over'};
+  if(diff<=30) return {label:'Due in '+diff+'d',cls:'b-due'};
+  return {label:fmtDate(d),cls:'b-ok'};
+}
+function catBadge(c){
+  var cats={"People's Experience":"#fce4e8|#c2475a","Feedback from Staff and Leaders":"#dbeafe|#1d4ed8","Feedback from Partners":"#ede9fe|#6d28d9","Processes":"#d8f3dc|#166534","Observations":"#fef3c7|#92400e","Outcomes":"#f0fdf4|#16a34a"};
+  if(!c||!cats[c]) return '<span style="font-size:.68rem;color:#7a9b84">Not categorised</span>';
+  var p=cats[c].split('|');
+  return '<span style="background:'+p[0]+';color:'+p[1]+';padding:1px 7px;border-radius:5px;font-size:.68rem;font-weight:600;white-space:nowrap">'+c+'</span>';
+}
+function sBadge(s){
+  var cls=s==='Approved'?'b-good':s==='Pending Review'?'b-pend':'b-need';
+  return '<span class="badge '+cls+'">'+s+'</span>';
+}
+function fmtDate(d){if(!d)return '';try{return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return d;}}
+
+// ============================================================
+// RENDER ALL
+// ============================================================
+function renderAll(){
+  renderOverallRating();
+  renderStats();
+  renderDomains();
+  renderReviewStatus();
+  renderCatBreakdown();
+  renderEvTable(evidence);
+  renderStatements();
+  renderFeedback();
+  renderIncidents();
+  renderTrainingReadOnly();
+  renderReports();
+}
+
+function renderOverallRating(){
+  var ov=overallRating();
+  var ap=evidence.filter(function(e){return e.status==='Approved';}).length;
+  var total=evidence.length;
+  document.getElementById('overallRatingDiv').style.border='2px solid '+ov.bdr;
+  document.getElementById('overallRatingDiv').style.background=ov.bg;
+  document.getElementById('overallRatingDiv').innerHTML=
+    '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">'+
+    '<div><div style="font-size:.72rem;font-weight:700;color:#7a9b84;text-transform:uppercase;margin-bottom:.3rem">Overall CQC Rating Indicator &mdash; Greenshoot Care Services</div>'+
+    '<div style="font-size:1.6rem;font-weight:700;color:'+ov.col+'">'+ov.icon+ov.label+'</div>'+
+    '<div style="font-size:.72rem;color:#7a9b84;margin-top:.2rem">Based on approved evidence across all 5 key questions &mdash; Outstanding 76-100% &bull; Good 51-75% &bull; Requires Improvement 26-50% &bull; Inadequate 0-25%</div></div>'+
+    '<div style="text-align:right"><div style="font-size:1.8rem;font-weight:700;color:'+ov.col+'">'+ap+'</div><div style="font-size:.75rem;color:#7a9b84">Approved Evidence Items</div>'+
+    '<div style="font-size:.75rem;color:#7a9b84">of '+total+' total</div></div></div>';
+}
+
+function renderStats(){
+  var ap=evidence.filter(function(e){return e.status==='Approved';}).length;
+  var cats=['People\'s Experience','Feedback from Staff and Leaders','Feedback from Partners','Processes','Observations','Outcomes'];
+  var catCount=cats.filter(function(c){return evidence.find(function(e){return e.category===c&&e.status==='Approved';});}).length;
+  document.getElementById('statsGrid').innerHTML=
+    sc(evidence.length,'Total Evidence','#1a3a2a')+
+    sc(ap,'Approved','#2d6a4f')+
+    sc(catCount+'/6','Categories Covered','#3a7bc8')+
+    sc(feedback.length,'Feedback Records','#c2475a')+
+    sc(incidents.length,'Incident Records','#9b5de5')+
+    sc(training.length,'Training Records','#f77f00');
+}
+function sc(n,l,c){return '<div class="sc"><div class="sn" style="color:'+c+'">'+n+'</div><div class="sl">'+l+'</div></div>';}
+
+function renderDomains(){
+  var html='';
+  Object.keys(DOMAINS).forEach(function(name){
+    var d=DOMAINS[name];var pct=domainPct(name);var r=cqcRating(pct);
+    var ap=evidence.filter(function(e){return e.domain===name&&e.status==='Approved';}).length;
+    html+='<div class="dc" style="border-top:4px solid '+d.color+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">'+
+      '<span style="font-size:1rem;font-weight:900;color:'+d.color+'">'+d.icon+'</span>'+
+      '<span style="font-size:1.2rem;font-weight:700;color:'+d.color+'">'+pct+'%</span></div>'+
+      '<div style="font-weight:700;font-size:.88rem;color:#1a3a2a">'+name+'</div>'+
+      '<div style="font-size:.72rem;color:#7a9b84;margin:.2rem 0 .4rem">'+ap+' approved of '+d.statements.length+' statements</div>'+
+      rBadge(r)+pBar(pct,d.color)+'</div>';
+  });
+  document.getElementById('domainsGrid').innerHTML=html;
+}
+
+function renderReviewStatus(){
+  var overdue=evidence.filter(function(e){return e.reviewDate&&e.reviewDate<TODAY;});
+  var due30=evidence.filter(function(e){var d=new Date(e.reviewDate);var diff=Math.round((d-new Date(TODAY))/(1000*60*60*24));return diff>=0&&diff<=30;});
+  var current=evidence.filter(function(e){return e.reviewDate&&e.reviewDate>=TODAY&&!due30.find(function(x){return x.id===e.id;});});
+  document.getElementById('reviewStatusDiv').innerHTML=
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem">'+
+    '<div style="background:#fee2e2;border-radius:8px;padding:.8rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:#991b1b">'+overdue.length+'</div><div style="font-size:.72rem;color:#991b1b;font-weight:600">Overdue for Review</div></div>'+
+    '<div style="background:#fef3c7;border-radius:8px;padding:.8rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:#92400e">'+due30.length+'</div><div style="font-size:.72rem;color:#92400e;font-weight:600">Due Within 30 Days</div></div>'+
+    '<div style="background:#dcfce7;border-radius:8px;padding:.8rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:#166534">'+current.length+'</div><div style="font-size:.72rem;color:#166534;font-weight:600">Current &amp; Reviewed</div></div>'+
+    '</div>';
+}
+
+function renderCatBreakdown(){
+  var cats=["People's Experience","Feedback from Staff and Leaders","Feedback from Partners","Processes","Observations","Outcomes"];
+  var html='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem">';
+  cats.forEach(function(cat){
+    var count=evidence.filter(function(e){return e.category===cat&&e.status==='Approved';}).length;
+    var total=evidence.filter(function(e){return e.category===cat;}).length;
+    html+='<div style="border:1px solid '+(count>0?'#86efac':'#d0e8d8')+';border-radius:8px;padding:.7rem;background:'+(count>0?'#f0fdf4':'#faf9f6')+'">'+
+      '<div style="font-size:1.1rem;font-weight:700;color:'+(count>0?'#166534':'#7a9b84')+'">'+count+'</div>'+
+      '<div style="font-size:.68rem;font-weight:600;color:'+(count>0?'#166534':'#7a9b84')+';margin-bottom:.2rem">'+cat+'</div>'+
+      '<div style="font-size:.65rem;color:#7a9b84">'+total+' total &bull; '+count+' approved</div></div>';
+  });
+  html+='</div>';
+  document.getElementById('catBreakdownDiv').innerHTML=html;
+}
+
+function renderEvTable(list){
+  if(!list.length){
+    document.getElementById('evTbody').innerHTML='<tr><td colspan="10" style="text-align:center;padding:2.5rem;color:#7a9b84">No evidence records found</td></tr>';
+    return;
+  }
+  document.getElementById('evTbody').innerHTML=list.map(function(e){
+    var d=DOMAINS[e.domain]||{color:'#666',bg:'#f0f0f0'};
+    var rs=reviewStatus(e.reviewDate);
+    return '<tr>'+
+      '<td><strong style="font-size:.8rem">'+e.title+'</strong>'+(e.desc?'<br><span style="font-size:.7rem;color:#7a9b84">'+e.desc.substring(0,60)+'...</span>':'')+'</td>'+
+      '<td><span style="background:'+d.bg+';color:'+d.color+';padding:1px 7px;border-radius:5px;font-size:.7rem;font-weight:600">'+e.domain+'</span></td>'+
+      '<td>'+catBadge(e.category)+'</td>'+
+      '<td style="font-size:.72rem;color:#3d5a47;max-width:180px">'+e.statement.split('-')[0].trim()+'</td>'+
+      '<td style="font-size:.75rem;color:#7a9b84">'+e.type+'</td>'+
+      '<td style="font-size:.78rem;font-weight:500">'+e.submittedBy+'</td>'+
+      '<td><span style="background:#f0fdf4;color:#2d6a4f;border:1px solid #bbf7d0;font-size:.68rem;padding:1px 7px;border-radius:5px;font-weight:600">'+e.position+'</span></td>'+
+      '<td>'+sBadge(e.status)+'</td>'+
+      '<td><span class="badge '+rs.cls+'">'+rs.label+'</span></td>'+
+      '<td style="font-size:.75rem;white-space:nowrap">'+fmtDate(e.date)+'</td>'+
+      '</tr>';
+  }).join('');
+}
+
+function filterEv(){
+  var q=document.getElementById('evSearch').value.toLowerCase();
+  var dom=document.getElementById('evFilterDom').value;
+  var cat=document.getElementById('evFilterCat').value;
+  var stat=document.getElementById('evFilterStat').value;
+  renderEvTable(evidence.filter(function(e){
+    return(!q||e.title.toLowerCase().includes(q)||(e.desc||'').toLowerCase().includes(q))&&
+      (!dom||e.domain===dom)&&(!cat||e.category===cat)&&(!stat||e.status===stat);
+  }));
+}
+
+function renderStatements(){
+  var html='';
+  Object.keys(DOMAINS).forEach(function(name){
+    var d=DOMAINS[name];var pct=domainPct(name);var r=cqcRating(pct);
+    html+='<div style="margin-bottom:1.5rem"><div style="display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.1rem;border-radius:9px;background:'+d.color+';color:#fff;margin-bottom:.6rem;flex-wrap:wrap;gap:.5rem">'+
+      '<span style="font-weight:700;font-size:.9rem">'+d.icon+' '+name+'</span>'+
+      '<span style="font-size:.8rem;opacity:.9">'+pct+'% evidenced &nbsp;'+rBadge(r)+'</span></div>';
+    d.statements.forEach(function(s){
+      var ap=evidence.filter(function(e){return e.domain===name&&e.statement===s&&e.status==='Approved';}).length;
+      var tot=evidence.filter(function(e){return e.domain===name&&e.statement===s;}).length;
+      var sr;
+      if(ap>=2)sr=cqcRating(85);else if(ap===1)sr=cqcRating(60);else if(tot>0)sr=cqcRating(35);else sr=cqcRating(0);
+      html+='<div style="background:#fff;border:1px solid #d0e8d8;border-left:3px solid '+sr.bdr+';border-radius:9px;padding:.9rem 1.1rem;margin-bottom:.5rem;display:flex;align-items:flex-start;gap:.8rem;flex-wrap:wrap">'+
+        '<div style="flex:1"><div style="font-size:.82rem;font-weight:500;color:#1a3a2a;line-height:1.4">'+s+'</div>'+
+        '<div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap">'+
+        rBadge(sr)+
+        '<span style="font-size:.7rem;background:#d8f3dc;color:#2d6a4f;padding:1px 7px;border-radius:10px;font-weight:600">'+tot+' item'+(tot!==1?'s':'')+' &bull; '+ap+' approved</span>'+
+        (tot===0?'<span style="font-size:.7rem;color:#c2475a">No evidence linked</span>':'')+
+        '</div></div></div>';
+    });
+    html+='</div>';
+  });
+  document.getElementById('statementsDiv').innerHTML=html;
+}
+
+function renderFeedback(){
+  if(!feedback.length){
+    document.getElementById('feedbackDiv').innerHTML='<div class="card" style="text-align:center;color:#7a9b84;padding:2rem">No feedback records available. Feedback is logged by Greenshoot staff in the internal portal.</div>';
+    return;
+  }
+  var typeCols={'Compliment':'#52b788','Complaint':'#c2475a','Suggestion':'#3a7bc8','Concern':'#f77f00'};
+  var statCls={'Open':'b-pend','In Progress':'b-need','Resolved':'b-good'};
+  document.getElementById('feedbackDiv').innerHTML=feedback.map(function(f){
+    return '<div class="card" style="border-left:4px solid '+(typeCols[f.type]||'#52b788')+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap">'+
+      '<div style="flex:1"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap">'+
+      '<span style="font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:5px;background:'+(f.type==='Compliment'?'#d8f3dc':f.type==='Complaint'?'#fee2e2':f.type==='Suggestion'?'#dbeafe':'#fef3c7')+'">'+f.type.toUpperCase()+'</span>'+
+      '<span style="font-size:.7rem;color:#7a9b84">'+f.source+' &bull; '+fmtDate(f.date)+'</span></div>'+
+      '<div style="font-weight:600;font-size:.85rem">'+f.summary+'</div>'+
+      (f.action?'<div style="font-size:.75rem;color:#2d6a4f;margin-top:.4rem;padding:.4rem .6rem;background:#f0fdf4;border-radius:5px"><strong>Action taken:</strong> '+f.action+'</div>':'')+
+      '</div><span class="badge '+(statCls[f.status]||'b-pend')+'">'+f.status+'</span></div></div>';
+  }).join('');
+}
+
+function renderIncidents(){
+  if(!incidents.length){
+    document.getElementById('incidentsDiv').innerHTML='<div class="card" style="text-align:center;color:#7a9b84;padding:2rem">No incidents logged. Incidents are recorded by Greenshoot staff in the internal portal.</div>';
+    return;
+  }
+  var sevCols={'Low':'#d8f3dc','Medium':'#fef3c7','High':'#fed7aa','Critical':'#fee2e2'};
+  var statCls={'Open':'b-need','Under Investigation':'b-pend','Closed':'b-good'};
+  document.getElementById('incidentsDiv').innerHTML=incidents.map(function(inc){
+    return '<div class="card" style="border-left:4px solid '+(inc.severity==='Critical'?'#991b1b':inc.severity==='High'?'#c2475a':inc.severity==='Medium'?'#c67c00':'#52b788')+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap">'+
+      '<div style="flex:1"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap">'+
+      '<span style="font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:5px;background:'+(sevCols[inc.severity]||'#f0f0f0')+'">'+inc.severity.toUpperCase()+' SEVERITY</span>'+
+      '<span style="font-size:.7rem;color:#7a9b84">'+inc.type+' &bull; '+fmtDate(inc.date)+'</span>'+
+      (inc.notify!=='No'?'<span style="font-size:.7rem;font-weight:700;background:#fee2e2;color:#991b1b;padding:1px 7px;border-radius:5px">CQC NOTIFIABLE</span>':'')+
+      '</div>'+
+      '<div style="font-weight:600;font-size:.85rem">'+inc.desc+'</div>'+
+      (inc.learning?'<div style="font-size:.75rem;color:#2d6a4f;margin-top:.3rem;padding:.4rem .6rem;background:#f0fdf4;border-radius:5px"><strong>&#128161; Learning:</strong> '+inc.learning+'</div>':'')+
+      '</div><span class="badge '+(statCls[inc.status]||'b-pend')+'">'+inc.status+'</span></div></div>';
+  }).join('');
+}
+
+function renderTrainingReadOnly(){
+  if(!training.length){
+    document.getElementById('trainingDiv').innerHTML=
+      '<div class="card" style="text-align:center;color:#7a9b84;padding:2rem">'+
+      '<div style="font-size:1.5rem;margin-bottom:.5rem">&#127891;</div>'+
+      'Staff training records are maintained in the Flo workforce management system.<br>'+
+      '<a href="https://greenshoot.flosolutions.co.uk/login.php" target="_blank" style="color:#2d6a4f;font-weight:600">View Flo System &#8599;</a>'+
+      '</div>';
+    return;
+  }
+  var byStaff={};
+  training.forEach(function(t){if(!byStaff[t.staffName])byStaff[t.staffName]=[];byStaff[t.staffName].push(t);});
+  var html='';
+  Object.keys(byStaff).forEach(function(name){
+    var recs=byStaff[name];
+    var expired=recs.filter(function(r){return r.expiry&&r.expiry<TODAY;}).length;
+    html+='<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem">'+
+      '<div style="font-weight:700;font-size:.88rem">&#128100; '+name+'</div>'+
+      (expired>0?'<span class="badge b-need">'+expired+' EXPIRED</span>':'<span class="badge b-good">All Current</span>')+
+      '</div>';
+    recs.forEach(function(r){
+      var rs=reviewStatus(r.expiry);
+      html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid #d0e8d8;gap:.5rem;flex-wrap:wrap">'+
+        '<div><div style="font-size:.78rem;font-weight:500">'+r.type+'</div>'+
+        '<div style="font-size:.7rem;color:#7a9b84">Completed: '+fmtDate(r.date)+(r.mandatory==='yes'?' &bull; MANDATORY':'')+'</div></div>'+
+        '<span class="badge '+rs.cls+'">'+rs.label+'</span></div>';
+    });
+    html+='</div>';
+  });
+  document.getElementById('trainingDiv').innerHTML=html;
+}
+
+function renderReports(){
+  var ov=overallRating();
+  var html='<div class="card" style="border:2px solid '+ov.bdr+';background:'+ov.bg+';margin-bottom:1rem">'+
+    '<div style="font-size:.72rem;color:#7a9b84;font-weight:700;text-transform:uppercase;margin-bottom:.3rem">Overall CQC Rating Indicator</div>'+
+    '<div style="font-size:1.5rem;font-weight:700;color:'+ov.col+'">'+ov.icon+ov.label+'</div>'+
+    '<div style="font-size:.72rem;color:#7a9b84;margin-top:.2rem">Outstanding 76-100% &bull; Good 51-75% &bull; Requires Improvement 26-50% &bull; Inadequate 0-25%</div></div>';
+  html+='<div class="card"><div style="font-weight:700;margin-bottom:.8rem">Evidence Coverage by Domain</div>';
+  Object.keys(DOMAINS).forEach(function(name){
+    var d=DOMAINS[name];var pct=domainPct(name);var r=cqcRating(pct);
+    var covered=d.statements.filter(function(s){return evidence.find(function(e){return e.domain===name&&e.statement===s&&e.status==='Approved';});}).length;
+    html+='<div style="margin-bottom:1rem;padding:.8rem;border:1px solid '+r.bdr+';border-radius:9px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;flex-wrap:wrap;gap:.4rem">'+
+      '<span style="font-weight:700;font-size:.85rem">'+d.icon+' '+name+'</span>'+rBadge(r)+'</div>'+
+      '<div style="font-size:.75rem;color:#7a9b84;margin-bottom:.4rem">'+covered+' of '+d.statements.length+' statements have approved evidence ('+pct+'%)</div>'+
+      '<div style="background:#e5e7eb;border-radius:20px;height:7px;overflow:hidden"><div style="height:100%;border-radius:20px;background:'+d.color+';width:'+pct+'%"></div></div></div>';
+  });
+  html+='</div>';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem"><div class="card">'+
+    '<div style="font-weight:700;margin-bottom:.7rem">&#128172; Feedback Summary</div>'+
+    '<div style="font-size:.82rem">Total logged: <strong>'+feedback.length+'</strong></div>'+
+    '<div style="font-size:.82rem">Complaints: <strong>'+feedback.filter(function(f){return f.type==='Complaint';}).length+'</strong></div>'+
+    '<div style="font-size:.82rem">Compliments: <strong>'+feedback.filter(function(f){return f.type==='Compliment';}).length+'</strong></div>'+
+    '<div style="font-size:.82rem">Open: <strong>'+feedback.filter(function(f){return f.status==='Open';}).length+'</strong></div></div>'+
+    '<div class="card"><div style="font-weight:700;margin-bottom:.7rem">&#9888;&#65039; Incident Summary</div>'+
+    '<div style="font-size:.82rem">Total logged: <strong>'+incidents.length+'</strong></div>'+
+    '<div style="font-size:.82rem">Open: <strong>'+incidents.filter(function(i){return i.status==='Open';}).length+'</strong></div>'+
+    '<div style="font-size:.82rem">Closed: <strong>'+incidents.filter(function(i){return i.status==='Closed';}).length+'</strong></div>'+
+    '<div style="font-size:.82rem">CQC Notifiable: <strong>'+incidents.filter(function(i){return i.notify!=='No';}).length+'</strong></div></div></div>';
+  document.getElementById('reportsDiv').innerHTML=html;
+}
+
+// ============================================================
+// TABS
+// ============================================================
+document.querySelectorAll('.tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+    document.querySelectorAll('.tab-pane').forEach(function(p){p.classList.remove('active');});
+    tab.classList.add('active');
+    document.getElementById('tab-'+tab.getAttribute('data-tab')).classList.add('active');
+  });
+});
+
+document.getElementById('evSearch').addEventListener('input',filterEv);
+document.getElementById('evFilterDom').addEventListener('change',filterEv);
+document.getElementById('evFilterCat').addEventListener('change',filterEv);
+document.getElementById('evFilterStat').addEventListener('change',filterEv);
+
+// Load data on start
+loadData();
+</script>
+</body>
+</html>
